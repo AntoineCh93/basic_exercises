@@ -1,3 +1,8 @@
+from collections import defaultdict
+from email.quoprimime import body_check
+from html.entities import name2codepoint
+from webbrowser import get
+
 # Задание 1
 # Дан список учеников, нужно посчитать количество повторений каждого имени ученика
 # Пример вывода:
@@ -12,7 +17,32 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Петя'},
 ]
-# ???
+
+
+students_dict = {}
+for name in students:
+    the_name = name['first_name']
+    if the_name in students_dict: 
+        students_dict[the_name] += 1
+    else:
+        students_dict[the_name] = 1
+for the_name in students_dict:
+    print(f'{the_name}: {students_dict[the_name]}')
+
+
+# counting_names(students)       
+# def counting_names(students):
+#     calcul = defaultdict(int)
+#     for one_name in students:
+#         name = one_name['first_name']
+#         calcul[name] += 1
+#     for name in calcul:
+#         name_count = calcul[name]
+#         print(name, name_count)
+
+# counting_names(students)
+       
+
 
 
 # Задание 2
@@ -26,7 +56,20 @@ students = [
     {'first_name': 'Маша'},
     {'first_name': 'Оля'},
 ]
-# ???
+
+ 
+
+
+def common_name (students):
+    calcul = defaultdict(int)
+    for one_name in students: 
+        name = one_name['first_name']
+    for name in calcul:
+        calcul[name] += 1
+        print(max(calcul, key = (calcul.get)))
+        
+common_name (students)
+
 
 
 # Задание 3
@@ -51,7 +94,20 @@ school_students = [
         {'first_name': 'Саша'},
     ],
 ]
-# ???
+
+def common_name (school_students):
+    calcul = defaultdict(int)
+    for school_class in school_students: 
+        for child in school_class:
+            name = child['first_name']
+            calcul[name] += 1
+    for child in calcul:
+        school_class = list(calcul).index(child) 
+        if school_class >= 3:
+            break
+        print(f'Class {school_class + 1} : {child}')
+        
+common_name (school_students)
 
 
 # Задание 4
@@ -72,8 +128,18 @@ is_male = {
     'Миша': True,
     'Даша': False,
 }
-# ???
-
+def Who_in_class (school):
+    for school_class in school:
+        m = 0
+        f = 0
+        for student in school_class['students']:
+            name = student.get('first_name')
+            if is_male[name]:
+                m += 1
+            else:
+                f += 1
+        print(f'В классе {school_class["class"]}: мальчики {m}, девочки {f}')
+Who_in_class (school)        
 
 # Задание 5
 # По информации о учениках разных классов нужно найти класс, в котором больше всего девочек и больше всего мальчиков
@@ -91,5 +157,32 @@ is_male = {
     'Олег': True,
     'Миша': True,
 }
-# ???
+
+maximum_m = ['',0]
+maximum_f = ['',0]
+
+def Who_in_class_more (school):
+    for school_class in school:
+        m = 0
+        f = 0
+        for student in school_class['students']:
+            name = student.get('first_name')
+            if is_male[name]:
+                m += 1
+            else:
+                f += 1
+        
+         
+        if m > maximum_m [1]:
+            maximum_m[0] = school_class['class']
+            maximum_m[1] = m
+        if f > maximum_f [1]:
+            maximum_f[0] = school_class['class']
+            maximum_f[1] = f   
+
+    print(f'в класcе больше мальчиков {maximum_m[0]}')
+    print(f'в класcе больше девочек {maximum_f[0]}')
+
+        # print(f'В классе {school_class["class"]}: мальчики {m}, девочки {f}')
+Who_in_class_more (school)  
 

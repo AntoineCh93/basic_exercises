@@ -2,17 +2,22 @@
 # Необходимо вывести имена всех учеников из списка с новой строки
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-# ???
 
+def by_one_name (names: list):
+    for names in names:
 
-# Задание 2
-# Необходимо вывести имена всех учеников из списка, рядом с именем показать количество букв в нём
-# Пример вывода:
-# Оля: 3
-# Петя: 4
+        print(names)
+      
+by_one_name (names)
 
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-# ???
+
+def by_one_name (names: list):
+    for names in names:
+
+        print(f'{names} {len(names)}')
+      
+by_one_name (names)
 
 
 # Задание 3
@@ -25,7 +30,17 @@ is_male = {
     'Маша': False,
 }
 names = ['Оля', 'Петя', 'Вася', 'Маша']
-# ???
+
+def gender_by_name (names, gen):
+    for name in names:
+        find_gender = gen.get(name)
+        if find_gender:
+            m_or_f = 'M'
+        else:
+            m_or_f = 'Ж'
+        print(f"{name} {m_or_f}")
+        
+gender_by_name(names, is_male)     
 
 
 # Задание 4
@@ -40,7 +55,13 @@ groups = [
     ['Вася', 'Маша', 'Саша', 'Женя'],
     ['Оля', 'Петя', 'Гриша'],
 ]
-# ???
+def divide_by_groups(groups):
+    for group in groups: 
+        number = groups.index(group)+1
+        number_of_people = len(group)
+        print(f'Группа:{number},{number_of_people} ')
+
+divide_by_groups(groups)
 
 
 # Задание 5
@@ -54,4 +75,11 @@ groups = [
     ['Оля', 'Петя', 'Гриша'],
     ['Вася', 'Маша', 'Саша', 'Женя'],
 ]
-# ???
+
+def divide_by_groups(groups):
+    for group in groups: 
+        number = groups.index(group)+1
+        names_in_group = ','.join(group)
+        print(f'Номер групп:{number} ,{names_in_group} ')
+
+divide_by_groups(groups)
