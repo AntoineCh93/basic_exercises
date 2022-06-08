@@ -96,16 +96,29 @@ school_students = [
 ]
 
 def common_name (school_students):
-    calcul = defaultdict(int)
+    # calcul = defaultdict(int)
+    count_class = 1
     for school_class in school_students: 
+        max_child = {}
         for child in school_class:
             name = child['first_name']
-            calcul[name] += 1
-    for child in calcul:
-        school_class = list(calcul).index(child) 
-        if school_class >= 3:
-            break
-        print(f'Class {school_class + 1} : {child}')
+            if max_child.get[name]:
+                max_child[name] += 1
+            else:
+                max_child[name] = 1     
+        print(max_child)       #больше всего учеников
+        popular_name = ""
+        for key, item in max_child.items():
+            if item == "":
+                popular_name = key
+            if max_child[popular_name] < item:
+                popular_name = key
+
+        print(f"{count_class} самое популярное имя {popular_name}")
+        count_class += 1
+
+    # for key, child in calcul.items():
+    #     print(key, child)    
         
 common_name (school_students)
 
